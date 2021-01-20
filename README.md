@@ -1,6 +1,6 @@
 # Quarkus JWT 401 http status issue
 
-This project is not functional and is used to describe Issue https://github.com/quarkusio/quarkus/issues/
+This project is not functional and is used to describe Issue https://github.com/quarkusio/quarkus/issues/14450
 
 
 #### Usage

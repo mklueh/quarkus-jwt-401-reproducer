@@ -13,6 +13,18 @@ import static org.hamcrest.CoreMatchers.is;
 @QuarkusTest
 public class ExampleResourceTest {
 
+
+    @Test
+    public void testUnavailableHelloEndpoint() {
+        String token = getToken();
+        given()
+                .when()
+                .auth().oauth2(token)
+                .get("/not-reachable")
+                .then()
+                .statusCode(403);
+    }
+
     @Test
     public void testHelloEndpoint() {
         String token = getToken();
@@ -27,7 +39,8 @@ public class ExampleResourceTest {
 
     private String getToken() {
         return Jwt
-                .issuer("some-id")
+                .subject("some-id")
+                .issuer("https://example.com/issuer")
                 .groups("user")
                 .expiresAt(System.currentTimeMillis() + 1000000000L)
                 .sign();
